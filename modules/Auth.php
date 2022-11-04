@@ -146,14 +146,7 @@
 			$code = 200;
 			$remarks = "failed";
 			$message = "Account creation failed.";
-			$data = [
-				'userfname_fld' => $dt->userfname_fld,
-				'usermname_fld' => $dt->usermname_fld,
-				'userlname_fld' => $dt->userlname_fld,
-				'userpos_fld' => $dt->userpos_fld,
-				'username_fld' => $dt->username_fld,
-				'userpwd_fld' => $this->encrypt_password($dt->userpwd_fld),
-			];
+			
 
 			$res = $this->gm->insert('user_tbl', $data);
 
@@ -187,7 +180,10 @@
 						$remarks = "auth";
 						$message = "Authorization failed. You already logged in with other device.";
 					} else {
-						$payload = $token;
+						$payload = [
+							'id' => $id,
+							'token' => $token,
+						];
 						// $code = 200;
 						$remarks = "success"; 
 						$message = "Login success.";
@@ -196,6 +192,8 @@
 			}
 			return $this->gm->response($payload, $remarks, $message, $code);		
 		}
+
+		
 
 		// Add
 

@@ -27,5 +27,37 @@
             }
             return $this->gm->response($payload, $remarks, $message, $code);
         }
+
+        public function deleteEquipment($dt) {
+            $payload = [];	
+			$code = 200;
+			$remarks = "failed";
+			$message = "Equipment deletion failed.";
+
+			$res = $this->gm->delete('equipment_tbl', "eid_fld = $dt->eid_fld");
+
+            if($res['code'] == 200) {
+                $code = 200;
+                $remarks = "success";
+                $message = "Equipment deleted";
+            }
+            return $this->gm->response($payload, $remarks, $message, $code);
+        }
+
+        public function updateQuantity($dt) {
+            $payload = [];	
+			$code = 200;
+			$remarks = "failed";
+			$message = "Update failed.";
+
+			$res = $this->gm->update("equipment_tbl", ["eqty_fld"=>$dt->eqty_fld], "eid_fld = $dt->eid_fld");
+
+            if($res['code'] == 200) {
+                $code = 200;
+                $remarks = "success";
+                $message = "Quantity updated successfully";
+            }
+            return $this->gm->response($payload, $remarks, $message, $code);
+        }
     }
 ?>

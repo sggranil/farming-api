@@ -35,6 +35,25 @@
                     echo json_encode($auth->addUser($d));
                 break;
 
+                case 'getuser':
+                    echo json_encode($get->getUser($d));
+                break;
+
+                case 'geteq':
+                    echo json_encode($get->getEquipment($d));
+                break;
+
+                case 'addeq':
+                    echo json_encode($post->addEquipment($d));
+                break;
+
+                case 'deleteeq':
+                    echo json_encode($post->deleteEquipment($d));
+                break;
+                
+                case 'updateqty':
+                    echo json_encode($post->updateQuantity($d));
+                break;
             }
         break;
 
